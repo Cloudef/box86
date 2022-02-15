@@ -1,5 +1,9 @@
 #ifndef __ARM_EMITTER_H__
 #define __ARM_EMITTER_H__
+
+// warning: taking the absolute value of unsigned type 'unsigned int' has no effect [-Wabsolute-value]
+#pragma GCC diagnostic ignored "-Wabsolute-value"
+
 /*
     ARM Emitter
 
