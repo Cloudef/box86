@@ -1674,19 +1674,19 @@ my_GTypeValueTable_t* findFreeGTypeValueTable(my_GTypeValueTable_t* fcts)
     #undef GO
     #define GO(A) if(ref_gtypevaluetable_##A == 0) {    \
         ref_gtypevaluetable_##A = fcts;                 \
-        my_gtypevaluetable_##A.value_init = (fcts->value_init)?((GetNativeFnc((uintptr_t)fcts->value_init))?GetNativeFnc((uintptr_t)fcts->value_init):my_funcs_value_init_##A):NULL;    \
+        my_gtypevaluetable_##A.value_init = (fcts->value_init)?((GetNativeFnc((uintptr_t)fcts->value_init))?GetNativeFnc((uintptr_t)fcts->value_init):(void*)(uintptr_t)my_funcs_value_init_##A):NULL;    \
         fct_funcs_value_init_##A = (uintptr_t)fcts->value_init;                             \
-        my_gtypevaluetable_##A.value_free = (fcts->value_free)?((GetNativeFnc((uintptr_t)fcts->value_free))?GetNativeFnc((uintptr_t)fcts->value_free):my_funcs_value_free_##A):NULL;    \
+        my_gtypevaluetable_##A.value_free = (fcts->value_free)?((GetNativeFnc((uintptr_t)fcts->value_free))?GetNativeFnc((uintptr_t)fcts->value_free):(void*)(uintptr_t)my_funcs_value_free_##A):NULL;    \
         fct_funcs_value_free_##A = (uintptr_t)fcts->value_free;                             \
-        my_gtypevaluetable_##A.value_copy = (fcts->value_copy)?((GetNativeFnc((uintptr_t)fcts->value_copy))?GetNativeFnc((uintptr_t)fcts->value_copy):my_funcs_value_copy_##A):NULL;    \
+        my_gtypevaluetable_##A.value_copy = (fcts->value_copy)?((GetNativeFnc((uintptr_t)fcts->value_copy))?GetNativeFnc((uintptr_t)fcts->value_copy):(void*)(uintptr_t)my_funcs_value_copy_##A):NULL;    \
         fct_funcs_value_copy_##A = (uintptr_t)fcts->value_copy;                             \
-        my_gtypevaluetable_##A.value_peek_pointer = (fcts->value_peek_pointer)?((GetNativeFnc((uintptr_t)fcts->value_peek_pointer))?GetNativeFnc((uintptr_t)fcts->value_peek_pointer):my_funcs_value_peek_pointer_##A):NULL;    \
+        my_gtypevaluetable_##A.value_peek_pointer = (fcts->value_peek_pointer)?((GetNativeFnc((uintptr_t)fcts->value_peek_pointer))?GetNativeFnc((uintptr_t)fcts->value_peek_pointer):(void*)(uintptr_t)my_funcs_value_peek_pointer_##A):NULL;    \
         fct_funcs_value_peek_pointer_##A = (uintptr_t)fcts->value_peek_pointer;             \
         my_gtypevaluetable_##A.collect_format = fcts->collect_format;                       \
-        my_gtypevaluetable_##A.collect_value = (fcts->collect_value)?((GetNativeFnc((uintptr_t)fcts->collect_value))?GetNativeFnc((uintptr_t)fcts->collect_value):my_funcs_collect_value_##A):NULL;    \
+        my_gtypevaluetable_##A.collect_value = (fcts->collect_value)?((GetNativeFnc((uintptr_t)fcts->collect_value))?GetNativeFnc((uintptr_t)fcts->collect_value):(void*)(uintptr_t)my_funcs_collect_value_##A):NULL;    \
         fct_funcs_collect_value_##A = (uintptr_t)fcts->collect_value;                       \
         my_gtypevaluetable_##A.lcopy_format = fcts->lcopy_format;                           \
-        my_gtypevaluetable_##A.lcopy_value = (fcts->lcopy_value)?((GetNativeFnc((uintptr_t)fcts->lcopy_value))?GetNativeFnc((uintptr_t)fcts->lcopy_value):my_funcs_lcopy_value_##A):NULL;    \
+        my_gtypevaluetable_##A.lcopy_value = (fcts->lcopy_value)?((GetNativeFnc((uintptr_t)fcts->lcopy_value))?GetNativeFnc((uintptr_t)fcts->lcopy_value):(void*)(uintptr_t)my_funcs_lcopy_value_##A):NULL;    \
         fct_funcs_lcopy_value_##A = (uintptr_t)fcts->lcopy_value;                           \
         return &my_gtypevaluetable_##A;                 \
     }
@@ -1947,18 +1947,18 @@ my_GTypeInfo_t* findFreeGTypeInfo(my_GTypeInfo_t* fcts, int parent)
         used_gtypeinfo_##A = 1;                                         \
         fct_parent_##A = parent;                                        \
         my_gtypeinfo_##A.class_size = fcts->class_size;                 \
-        my_gtypeinfo_##A.base_init = (fcts->base_init)?((GetNativeFnc((uintptr_t)fcts->base_init))?GetNativeFnc((uintptr_t)fcts->base_init):my_funcs_base_init_##A):NULL;    \
+        my_gtypeinfo_##A.base_init = (fcts->base_init)?((GetNativeFnc((uintptr_t)fcts->base_init))?GetNativeFnc((uintptr_t)fcts->base_init):(void*)(uintptr_t)my_funcs_base_init_##A):NULL;    \
         fct_funcs_base_init_##A = (uintptr_t)fcts->base_init;           \
-        my_gtypeinfo_##A.base_finalize = (fcts->base_finalize)?((GetNativeFnc((uintptr_t)fcts->base_finalize))?GetNativeFnc((uintptr_t)fcts->base_finalize):my_funcs_base_finalize_##A):NULL;    \
+        my_gtypeinfo_##A.base_finalize = (fcts->base_finalize)?((GetNativeFnc((uintptr_t)fcts->base_finalize))?GetNativeFnc((uintptr_t)fcts->base_finalize):(void*)(uintptr_t)my_funcs_base_finalize_##A):NULL;    \
         fct_funcs_base_finalize_##A = (uintptr_t)fcts->base_finalize;   \
-        my_gtypeinfo_##A.class_init = (fcts->class_init)?((GetNativeFnc((uintptr_t)fcts->class_init))?GetNativeFnc((uintptr_t)fcts->class_init):my_funcs_class_init_##A):NULL;    \
+        my_gtypeinfo_##A.class_init = (fcts->class_init)?((GetNativeFnc((uintptr_t)fcts->class_init))?GetNativeFnc((uintptr_t)fcts->class_init):(void*)(uintptr_t)my_funcs_class_init_##A):NULL;    \
         fct_funcs_class_init_##A = (uintptr_t)fcts->class_init;         \
-        my_gtypeinfo_##A.class_finalize = (fcts->class_finalize)?((GetNativeFnc((uintptr_t)fcts->class_finalize))?GetNativeFnc((uintptr_t)fcts->class_finalize):my_funcs_class_finalize_##A):NULL;    \
+        my_gtypeinfo_##A.class_finalize = (fcts->class_finalize)?((GetNativeFnc((uintptr_t)fcts->class_finalize))?GetNativeFnc((uintptr_t)fcts->class_finalize):(void*)(uintptr_t)my_funcs_class_finalize_##A):NULL;    \
         fct_funcs_class_finalize_##A = (uintptr_t)fcts->class_finalize; \
         my_gtypeinfo_##A.class_data = fcts->class_data;                 \
         my_gtypeinfo_##A.instance_size = fcts->instance_size;           \
         my_gtypeinfo_##A.n_preallocs = fcts->n_preallocs;               \
-        my_gtypeinfo_##A.instance_init = (fcts->instance_init)?((GetNativeFnc((uintptr_t)fcts->instance_init))?GetNativeFnc((uintptr_t)fcts->instance_init):my_funcs_instance_init_##A):NULL;    \
+        my_gtypeinfo_##A.instance_init = (fcts->instance_init)?((GetNativeFnc((uintptr_t)fcts->instance_init))?GetNativeFnc((uintptr_t)fcts->instance_init):(void*)(uintptr_t)my_funcs_instance_init_##A):NULL;    \
         fct_funcs_instance_init_##A = (uintptr_t)fcts->instance_init;   \
         my_gtypeinfo_##A.value_table = findFreeGTypeValueTable(fcts->value_table);           \
         return &my_gtypeinfo_##A;                                       \
@@ -2015,13 +2015,13 @@ my_GtkTypeInfo_t* findFreeGtkTypeInfo(my_GtkTypeInfo_t* fcts, int parent)
         my_gtktypeinfo_##A.type_name = fcts->type_name; \
         my_gtktypeinfo_##A.object_size = fcts->object_size; \
         my_gtktypeinfo_##A.class_size = fcts->class_size; \
-        my_gtktypeinfo_##A.class_init_func = (fcts->class_init_func)?((GetNativeFnc((uintptr_t)fcts->class_init_func))?GetNativeFnc((uintptr_t)fcts->class_init_func):my_gtk_class_init_##A):NULL;    \
+        my_gtktypeinfo_##A.class_init_func = (fcts->class_init_func)?((GetNativeFnc((uintptr_t)fcts->class_init_func))?GetNativeFnc((uintptr_t)fcts->class_init_func):(void*)(uintptr_t)my_gtk_class_init_##A):NULL;    \
         fct_gtk_class_init_##A = (uintptr_t)fcts->class_init_func;           \
-        my_gtktypeinfo_##A.object_init_func = (fcts->object_init_func)?((GetNativeFnc((uintptr_t)fcts->object_init_func))?GetNativeFnc((uintptr_t)fcts->object_init_func):my_gtk_object_init_##A):NULL;    \
+        my_gtktypeinfo_##A.object_init_func = (fcts->object_init_func)?((GetNativeFnc((uintptr_t)fcts->object_init_func))?GetNativeFnc((uintptr_t)fcts->object_init_func):(void*)(uintptr_t)my_gtk_object_init_##A):NULL;    \
         fct_gtk_object_init_##A = (uintptr_t)fcts->object_init_func;         \
         my_gtktypeinfo_##A.reserved_1 = fcts->reserved_1;                 \
         my_gtktypeinfo_##A.reserved_2 = fcts->reserved_2;                 \
-        my_gtktypeinfo_##A.base_class_init_func = (fcts->base_class_init_func)?((GetNativeFnc((uintptr_t)fcts->base_class_init_func))?GetNativeFnc((uintptr_t)fcts->base_class_init_func):my_gtk_base_class_init_##A):NULL;    \
+        my_gtktypeinfo_##A.base_class_init_func = (fcts->base_class_init_func)?((GetNativeFnc((uintptr_t)fcts->base_class_init_func))?GetNativeFnc((uintptr_t)fcts->base_class_init_func):(void*)(uintptr_t)my_gtk_base_class_init_##A):NULL;    \
         fct_gtk_base_class_init_##A = (uintptr_t)fcts->base_class_init_func;   \
         return &my_gtktypeinfo_##A;                       \
     }
