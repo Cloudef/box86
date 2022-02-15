@@ -1783,8 +1783,8 @@ void CreateMemorymapFile(box86context_t* context, int fd)
             (h->PHEntries[i].p_type & (PF_R|PF_X) ? 'r':'-'), (h->PHEntries[i].p_type & PF_W ? 'w':'-'),
             (h->PHEntries[i].p_type & PF_X ? 'x':'-'), 'p', // p for private or s for shared
             (uintptr_t)h->PHEntries[i].p_offset,
-            major(st.st_dev), minor(st.st_dev), st.st_ino, h->path);
-        
+            major(st.st_dev), minor(st.st_dev), (long)st.st_ino, h->path);
+
         dummy = write(fd, buff, strlen(buff));
     }
     // create stack entry
