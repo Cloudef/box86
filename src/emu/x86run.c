@@ -1043,14 +1043,14 @@ x86emurun:
         case 0xC4:                      /* LES Gd,Ed */
             nextop = F8;
             GET_ED;
-            emu->segs[_ES] = *(__uint16_t*)(((char*)ED)+4);
+            emu->segs[_ES] = *(uint16_t*)(((char*)ED)+4);
             emu->segs_serial[_ES] = 0;
             GD.dword[0] = *(uint32_t*)ED;
             break;
         case 0xC5:                      /* LDS Gd,Ed */
             nextop = F8;
             GET_ED;
-            emu->segs[_DS] = *(__uint16_t*)(((char*)ED)+4);
+            emu->segs[_DS] = *(uint16_t*)(((char*)ED)+4);
             emu->segs_serial[_DS] = 0;
             GD.dword[0] = *(uint32_t*)ED;
             break;
