@@ -207,13 +207,13 @@ static my_GSourceFuncs_t* findFreeGSourceFuncs(my_GSourceFuncs_t* fcts)
     #undef GO
     #define GO(A) if(ref_gsourcefuncs_##A == 0) {   \
         ref_gsourcefuncs_##A = fcts;                 \
-        my_gsourcefuncs_##A.prepare = (fcts->prepare)?((GetNativeFnc((uintptr_t)fcts->prepare))?GetNativeFnc((uintptr_t)fcts->prepare):my_funcs_prepare_##A):NULL;    \
+        my_gsourcefuncs_##A.prepare = (fcts->prepare)?((GetNativeFnc((uintptr_t)fcts->prepare))?GetNativeFnc((uintptr_t)fcts->prepare):(void*)(uintptr_t)my_funcs_prepare_##A):NULL;    \
         fct_funcs_prepare_##A = (uintptr_t)fcts->prepare;                            \
-        my_gsourcefuncs_##A.check = (fcts->check)?((GetNativeFnc((uintptr_t)fcts->check))?GetNativeFnc((uintptr_t)fcts->check):my_funcs_check_##A):NULL;    \
+        my_gsourcefuncs_##A.check = (fcts->check)?((GetNativeFnc((uintptr_t)fcts->check))?GetNativeFnc((uintptr_t)fcts->check):(void*)(uintptr_t)my_funcs_check_##A):NULL;    \
         fct_funcs_check_##A = (uintptr_t)fcts->check;                            \
-        my_gsourcefuncs_##A.dispatch = (fcts->dispatch)?((GetNativeFnc((uintptr_t)fcts->dispatch))?GetNativeFnc((uintptr_t)fcts->dispatch):my_funcs_dispatch_##A):NULL;    \
+        my_gsourcefuncs_##A.dispatch = (fcts->dispatch)?((GetNativeFnc((uintptr_t)fcts->dispatch))?GetNativeFnc((uintptr_t)fcts->dispatch):(void*)(uintptr_t)my_funcs_dispatch_##A):NULL;    \
         fct_funcs_dispatch_##A = (uintptr_t)fcts->dispatch;                            \
-        my_gsourcefuncs_##A.finalize = (fcts->finalize)?((GetNativeFnc((uintptr_t)fcts->finalize))?GetNativeFnc((uintptr_t)fcts->finalize):my_funcs_finalize_##A):NULL;    \
+        my_gsourcefuncs_##A.finalize = (fcts->finalize)?((GetNativeFnc((uintptr_t)fcts->finalize))?GetNativeFnc((uintptr_t)fcts->finalize):(void*)(uintptr_t)my_funcs_finalize_##A):NULL;    \
         fct_funcs_finalize_##A = (uintptr_t)fcts->finalize;                            \
         return &my_gsourcefuncs_##A;                \
     }
