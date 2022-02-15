@@ -11,7 +11,6 @@
 #include <syscall.h>
 #include <stddef.h>
 #include <stdarg.h>
-#include <fts.h>
 
 #include "box86context.h"
 #include "debug.h"
