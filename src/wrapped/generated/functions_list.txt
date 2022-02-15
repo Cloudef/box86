@@ -415,6 +415,7 @@
 #() iFiII
 #() iFiuu
 #() iFiup
+#() iFiLi
 #() iFiLN
 #() iFipi
 #() iFipu
@@ -2379,6 +2380,7 @@
 #!defined(NOALIGN) iFEivpV -> iFEipV
 wrappedalure:
 wrappedalut:
+wrappedandroidshmem:
 wrappedappindicator:
 wrappedappindicator3:
 wrappedatk:
