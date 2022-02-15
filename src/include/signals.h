@@ -1,13 +1,15 @@
 #ifndef __SIGNALS_H__
 #define __SIGNALS_H__
+#define _GNU_SOURCE
 #include <signal.h>
 
+typedef sighandler_t host_sighandler;
 typedef void (*sighandler_t)(int);
 //typedef uint32_t x86_sigset_t;
 
 typedef struct x86_sigaction_s {
 	union {
-	  __sighandler_t _sa_handler;
+	  host_sighandler _sa_handler;
 	  void (*_sa_sigaction)(int, siginfo_t *, void *);
 	} _u;
 	sigset_t sa_mask;
@@ -17,7 +19,7 @@ typedef struct x86_sigaction_s {
 
 typedef struct x86_sigaction_restorer_s {
 	union {
-	  __sighandler_t _sa_handler;
+	  host_sighandler _sa_handler;
 	  void (*_sa_sigaction)(int, siginfo_t *, void *);
 	} _u;
 	uint32_t sa_flags;
