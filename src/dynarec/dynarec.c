@@ -29,6 +29,12 @@ void arm_epilog() EXPORTDYN;
 void arm_epilog_fast() EXPORTDYN;
 #endif
 
+#ifdef ANDROID
+typedef long jmp_buf_tag;
+#else
+typedef struct __jmp_buf_tag jmp_buf_tag;
+#endif
+
 #ifdef DYNAREC
 #ifdef HAVE_TRACE
 #include "elfloader.h"
@@ -94,7 +100,7 @@ void DynaCall(x86emu_t* emu, uintptr_t addr)
             ejb->emu = emu;
             ejb->jmpbuf_ok = 1;
             jmpbuf_reset = 1;
-            if((skip=sigsetjmp((struct __jmp_buf_tag*)ejb->jmpbuf, 1))) {
+            if((skip=sigsetjmp((jmp_buf_tag*)ejb->jmpbuf, 1))) {
                 printf_log(LOG_DEBUG, "Setjmp DynaCall %d, fs=0x%x\n", skip, ejb->emu->segs[_FS]);
                 addr = R_EIP;   // not sure if it should still be inside DynaCall!
                 #ifdef DYNAREC
@@ -155,7 +161,7 @@ void DynaCall(x86emu_t* emu, uintptr_t addr)
                     ejb->emu = emu;
                     ejb->jmpbuf_ok = 1;
                     jmpbuf_reset = 1;
-                    if(sigsetjmp((struct __jmp_buf_tag*)ejb->jmpbuf, 1)) {
+                    if(sigsetjmp((jmp_buf_tag*)ejb->jmpbuf, 1)) {
                         printf_log(LOG_DEBUG, "Setjmp inner DynaCall, fs=0x%x\n", ejb->emu->segs[_FS]);
                         addr = R_EIP;
                     }
@@ -199,7 +205,7 @@ int DynaRun(x86emu_t* emu)
 #ifdef DYNAREC
             jmpbuf_reset = 1;
 #endif
-            if((skip=sigsetjmp((struct __jmp_buf_tag*)ejb->jmpbuf, 1))) {
+            if((skip=sigsetjmp((jmp_buf_tag*)ejb->jmpbuf, 1))) {
                 printf_log(LOG_DEBUG, "Setjmp DynaRun %d, fs=0x%x\n", skip, ejb->emu->segs[_FS]);
                 #ifdef DYNAREC
                 if(box86_dynarec_test) {
@@ -249,7 +255,7 @@ int DynaRun(x86emu_t* emu)
                     ejb->emu = emu;
                     ejb->jmpbuf_ok = 1;
                     jmpbuf_reset = 1;
-                    if(sigsetjmp((struct __jmp_buf_tag*)ejb->jmpbuf, 1))
+                    if(sigsetjmp((jmp_buf_tag*)ejb->jmpbuf, 1))
                         printf_log(LOG_DEBUG, "Setjmp inner DynaRun, fs=0x%x\n", ejb->emu->segs[_FS]);
                 }
             }
