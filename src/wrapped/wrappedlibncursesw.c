@@ -39,7 +39,7 @@ EXPORT int myw_mvwprintw(x86emu_t* emu, void* win, int y, int x, void* fmt, void
     f(&buf, fmt, VARARGS);
     #else
     (void)emu;
-    vasprintf(&buf, fmt, b);
+    if (vasprintf(&buf, fmt, b) == -1) { abort(); }
     #endif
     // pre-bake the fmt/vaarg, because there is no "va_list" version of this function
     int ret = my->mvwprintw(win, y, x, buf);
@@ -81,7 +81,7 @@ EXPORT int myw_mvprintw(x86emu_t* emu, int x, int y, void* fmt, void* b)
     f(&buf, fmt, VARARGS);
     #else
     (void)emu;
-    vasprintf(&buf, fmt, b);
+    if (vasprintf(&buf, fmt, b) == -1) { abort(); }
     #endif
     // pre-bake the fmt/vaarg, because there is no "va_list" version of this function
     int ret = my->mvprintw(x, y, buf);
