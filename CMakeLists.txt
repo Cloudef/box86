@@ -31,6 +31,7 @@ option(NOGETCLOCK "Set to ON to avoid using clock_gettime with CLOCK_MONOTONIC_C
 option(NOGIT "Set to ON if not building from a git clone repo (like when building from a zip download from github)" ${NOGIT})
 option(NO_LIB_INSTALL "Set ON to not install a few x86 libs that are used by many program" ${NO_LIB_INSTALL})
 option(NO_CONF_INSTALL "Set ON to not install config files" ${NO_CONF_INSTALL})
+option(NO_INSTALL "Set ON to not install anything" ${NO_INSTALL})
 
 if(PANDORA OR PYRA OR RPI2 OR RPI3 OR RPI4 OR GAMESHELL OR ODROID OR GOA_CLONE OR RK3288 OR RK3399 OR ODROIDN2 OR TEGRAX1 OR TEGRAX1ARM32 OR RPI3ARM64 OR RPI4ARM64 OR PHYTIUM OR SD845 OR A64 OR LX2160A OR ARM64 OR RK3588)
     set(LD80BITS OFF CACHE BOOL "")
@@ -712,7 +713,7 @@ else()
     endif()
 endif()
 
-if(NOT _x86 AND NOT _x86_64)
+if(NOT NO_INSTALL)
   include(GNUInstallDirs)
   install(TARGETS ${BOX86} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
   if(NOT NO_CONF_INSTALL)
