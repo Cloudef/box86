@@ -24,7 +24,7 @@ rec {
     '';
   };
 
-  androidpkgs = import (fetchTarball "https://github.com/Cloudef/nixpkgs/archive/android-prebuilt.tar.gz") {};
+  androidpkgs = import (fetchTarball "https://github.com/Cloudef/nixpkgs/archive/824a4bc9c15be1d7c692f1d6608f20a36f75c63e.tar.gz") {};
 
   box86-armv7a-android = box86-base {
     host = androidpkgs;
